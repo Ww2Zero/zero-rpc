@@ -1,7 +1,6 @@
 package com.zero.rpc.transport.serialize.jdk;
 
-import com.zero.rpc.transport.entity.RpcRequest;
-import com.zero.rpc.transport.entity.RpcResponse;
+import com.zero.rpc.exception.serialize.SerializeException;
 import com.zero.rpc.transport.serialize.Serialization;
 
 import java.io.*;
@@ -13,59 +12,24 @@ public class JdkSerialization implements Serialization {
 
 
     @Override
-    public byte[] serialize(RpcRequest rpcRequest) {
-        ObjectOutputStream oos = null;
-        ByteArrayOutputStream bos = null;
-        try {
-            bos = new ByteArrayOutputStream();
-            oos = new ObjectOutputStream(bos);
-            oos.writeObject(rpcRequest);
+    public byte[] serialize(Object object) {
+        try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
+             ObjectOutputStream oos = new ObjectOutputStream(bos)) {
+            oos.writeObject(object);
             return bos.toByteArray();
         } catch (IOException e) {
-            System.out.println("序列化失败 Exception:" + e.toString());
-            return null;
-        } finally {
-            try {
-                if (oos != null) {
-                    oos.close();
-                }
-                if (bos != null) {
-                    bos.close();
-                }
-            } catch (IOException ex) {
-                System.out.println("io could not close:" + ex.toString());
-            }
+            throw new SerializeException("序列化失败，序列化方法为：JDK，序列化对象为：" + object);
         }
     }
 
     @Override
     public <T> T deserialize(byte[] data, Class<T> clazz) {
-        ByteArrayInputStream bi = null;
-        ObjectInputStream ois = null;
-        try {
-            bi = new ByteArrayInputStream(data);
-            ois = new ObjectInputStream(bi);
+        try (ByteArrayInputStream bi = new ByteArrayInputStream(data);
+             ObjectInputStream ois = new ObjectInputStream(bi)) {
             Object returnObject = ois.readObject();
-            return (T) returnObject;
+            return clazz.cast(returnObject);
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("bytes Could not deserialize:" + e.toString());
-            return null;
-        } finally {
-            try {
-                if (ois != null) {
-                    ois.close();
-                }
-                if (bi != null) {
-                    bi.close();
-                }
-            } catch (IOException ex) {
-                System.out.println("LogManage Could not serialize:" + ex.toString());
-            }
+            throw new SerializeException("反序列化失败,序列化方法为：JDK,目标对象为：" + clazz.getName());
         }
-    }
-
-    @Override
-    public RpcResponse deserialize(byte[] bytes) {
-        return deserialize(bytes, RpcResponse.class);
     }
 }

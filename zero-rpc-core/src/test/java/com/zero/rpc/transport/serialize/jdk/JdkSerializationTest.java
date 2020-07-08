@@ -1,8 +1,7 @@
-package com.zero.rpc.transport.serialize;
+package com.zero.rpc.transport.serialize.jdk;
 
 
 import com.zero.rpc.transport.entity.RpcRequest;
-import com.zero.rpc.transport.serialize.jdk.JdkSerialization;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class JdkSerializationTest {
 
     private RpcRequest rpcRequest;
-    private JdkSerialization jdkMessageCoder = new JdkSerialization();
+    private JdkSerialization serialization = new JdkSerialization();
 
     @Before
     public void before() {
@@ -27,10 +26,10 @@ public class JdkSerializationTest {
     @Test
     public void test() throws Exception {
         System.out.println("rpcRequest = " + rpcRequest);
-        byte[] serialize = jdkMessageCoder.serialize(rpcRequest);
+        byte[] serialize = serialization.serialize(rpcRequest);
         System.out.println("serialize = " + serialize.length);
 //        System.out.println("serialize = " + Arrays.toString(serialize));
-        Object desRpcRequest = jdkMessageCoder.deserialize(serialize, RpcRequest.class);
+        Object desRpcRequest = serialization.deserialize(serialize, RpcRequest.class);
         System.out.println("desRpcRequest = " + desRpcRequest);
         assertEquals(rpcRequest, desRpcRequest);
     }
