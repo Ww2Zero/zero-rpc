@@ -3,6 +3,7 @@ package com.zero.rpc.transport.entity;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @author zero
@@ -10,16 +11,15 @@ import java.util.Objects;
 public class RpcRequest implements Serializable {
 
     private static final long serialVersionUID = 3829252771168681281L;
-
     private String requestId;
-
     private String interfaceName;
-
     private String methodName;
-
     private Class<?>[] parameterTypes;
-
     private Object[] parameterArgs;
+
+    public RpcRequest() {
+        this.requestId = UUID.randomUUID().toString();
+    }
 
     public String getRequestId() {
         return requestId;
