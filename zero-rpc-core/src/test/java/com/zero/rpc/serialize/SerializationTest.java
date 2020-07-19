@@ -1,8 +1,8 @@
-package com.zero.rpc.transport.serialize;
+package com.zero.rpc.serialize;
 
-import com.zero.rpc.transport.entity.RpcRequest;
-import com.zero.rpc.transport.serialize.jdk.JdkSerialization;
-import com.zero.rpc.transport.serialize.kryo.KryoSerialization;
+import com.zero.rpc.entity.RpcRequest;
+import com.zero.rpc.serialize.jdk.JdkSerialization;
+import com.zero.rpc.serialize.kryo.KryoSerialization;
 import org.junit.Before;
 import org.junit.Test;
 

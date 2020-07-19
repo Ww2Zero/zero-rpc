@@ -1,7 +1,7 @@
-package com.zero.rpc.transport.serialize.jdk;
+package com.zero.rpc.serialize.jdk;
 
 
-import com.zero.rpc.transport.entity.RpcRequest;
+import com.zero.rpc.entity.RpcRequest;
 import org.junit.Before;
 import org.junit.Test;
 

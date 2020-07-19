@@ -1,9 +1,9 @@
-package com.zero.rpc.transport.remote;
+package com.zero.rpc.transport.socket;
 
+import com.zero.rpc.entity.RpcRequest;
+import com.zero.rpc.entity.RpcResponse;
 import com.zero.rpc.exception.remote.RemoteException;
-import com.zero.rpc.transport.entity.RpcRequest;
-import com.zero.rpc.transport.entity.RpcResponse;
-import com.zero.rpc.transport.serialize.jdk.JdkSerialization;
+import com.zero.rpc.serialize.jdk.JdkSerialization;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

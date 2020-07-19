@@ -1,6 +1,6 @@
-package com.zero.rpc.transport.serialize.kryo;
+package com.zero.rpc.serialize.kryo;
 
-import com.zero.rpc.transport.entity.RpcRequest;
+import com.zero.rpc.entity.RpcRequest;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,9 +1,9 @@
-package com.zero.rpc.transport.remote;
+package com.zero.rpc.transport.socket;
 
 import com.zero.rpc.config.RemoteConstants;
-import com.zero.rpc.transport.entity.RpcRequest;
-import com.zero.rpc.transport.entity.RpcResponse;
-import com.zero.rpc.transport.serialize.jdk.JdkSerialization;
+import com.zero.rpc.entity.RpcRequest;
+import com.zero.rpc.entity.RpcResponse;
+import com.zero.rpc.serialize.jdk.JdkSerialization;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -60,7 +60,7 @@ public class Server {
                     Method method = service.getClass().getMethod(methodName, parameterTypes);
                     Object invoke = method.invoke(service, parameterArgs);
                     rpcResponse.setReturnValue(invoke);
-                    rpcResponse.setStatus(RemoteConstants.status.SUCC);
+                    rpcResponse.setStatus(RemoteConstants.status.SUCCESS);
                 } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                     e.printStackTrace();
                     rpcResponse.setThrowable(e);
@@ -69,7 +69,6 @@ public class Server {
             } else {
                 rpcResponse.setStatus(RemoteConstants.status.METHOD_NOT_FOUND);
             }
-
         }
         return rpcResponse;
     }

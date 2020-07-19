@@ -1,4 +1,4 @@
-package com.zero.rpc.transport.entity;
+package com.zero.rpc.entity;
 
 import java.io.Serializable;
 import java.util.Arrays;

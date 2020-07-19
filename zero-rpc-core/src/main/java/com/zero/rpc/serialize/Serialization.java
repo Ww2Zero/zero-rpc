@@ -1,4 +1,4 @@
-package com.zero.rpc.transport.serialize;
+package com.zero.rpc.serialize;
 
 /**
  * @author zero

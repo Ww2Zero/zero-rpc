@@ -1,10 +1,10 @@
-package com.zero.rpc.transport.serialize.kryo;
+package com.zero.rpc.serialize.kryo;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.zero.rpc.exception.serialize.SerializeException;
-import com.zero.rpc.transport.serialize.Serialization;
+import com.zero.rpc.serialize.Serialization;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

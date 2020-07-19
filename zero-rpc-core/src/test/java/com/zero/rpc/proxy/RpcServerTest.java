@@ -1,6 +1,6 @@
 package com.zero.rpc.proxy;
 
-import com.zero.rpc.transport.remote.Server;
+import com.zero.rpc.transport.socket.Server;
 import org.junit.Test;
 
 public class RpcServerTest {
